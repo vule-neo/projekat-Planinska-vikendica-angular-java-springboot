@@ -1,0 +1,45 @@
+<div class="user-update-section">
+
+  <div class="update-row">
+    <label>Firstname: {{authService.getUser()?.firstname}}</label>
+    <input [(ngModel)]="newFirstName" type="text" />
+    <button (click)="updateUser('firstname', newFirstName)">Update</button>
+  </div>
+
+  <div class="update-row">
+    <label>Lastname: {{authService.getUser()?.lastname}}</label>
+    <input [(ngModel)]="newLastName" type="text" />
+    <button (click)="updateUser('lastname', newLastName)">Update</button>
+  </div>
+
+  <div class="update-row">
+    <label>Address: {{authService.getUser()?.address}}</label>
+    <input [(ngModel)]="newAddress" type="text" />
+    <button (click)="updateUser('address', newAddress)">Update</button>
+  </div>
+
+  <div class="update-row">
+    <label>Email: {{authService.getUser()?.email}}</label>
+    <input [(ngModel)]="newEmail" type="email" />
+    <button (click)="updateUser('email', newEmail)">Update</button>
+  </div>
+
+  <div class="update-row">
+    <label>Credit card number: {{authService.getUser()?.creditCardNumber}}</label>
+    <input [(ngModel)]="newCreditCardNumber" type="text" />
+    <button (click)="updateUser('credit_card_number', newCreditCardNumber)">Update</button>
+  </div>
+
+  <div class="update-row">
+    <label>Phone number: {{authService.getUser()?.phoneNumber}}</label>
+    <input [(ngModel)]="newPhoneNumber" type="text" />
+    <button (click)="updateUser('phone_number', newPhoneNumber)">Update</button>
+  </div>
+
+  <div class="profile-image-section">
+    <img [src]="authService.getUser()?.profilePicture || 'assets/default.png'" alt="Profile image" />
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="uploadProfilePicture()">Upload</button>
+  </div>
+
+</div>

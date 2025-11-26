@@ -1,0 +1,143 @@
+.section-title {
+  text-align: center;
+  margin: 30px 0 20px;
+  font-size: 1.8rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin: 20px 0 10px;
+  font-size: 1.4rem;
+}
+
+.user-form {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-form input,
+.user-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.user-form img {
+  margin-top: 5px;
+}
+
+.register-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background-color: #0056b3;
+}
+
+.pending-table {
+  width: 95%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  font-size: 0.95rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.pending-table th,
+.pending-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.pending-table thead {
+  background-color: #f1f1f1;
+}
+
+.pending-table button {
+  margin: 2px 5px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pending-table button:hover {
+  background-color: #218838;
+}
+
+.blocked-row {
+  background-color: #ffcccc;
+}
+
+.truncate {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.message-text {
+  text-align: center;
+  margin-top: 15px;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .user-form {
+    grid-template-columns: 1fr;
+  }
+
+  .pending-table {
+    font-size: 0.85rem;
+  }
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-row label {
+    flex: 0 0 180px;
+    margin-right: 10px;
+    text-align: right;
+  }
+
+  .form-row input,
+  .form-row select {
+    flex: 1;
+  }
+}

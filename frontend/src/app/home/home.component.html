@@ -1,0 +1,47 @@
+<h2 class="stat-title">Broj vikendica: {{numOfVikendica}}</h2>
+<h2 class="stat-title">Broj vlasnika: {{numOfVlasnik}}</h2>
+<h2 class="stat-title">Broj turista: {{numOfTurista}}</h2>
+
+<div class="stat-section">
+  <h3>Rezervisane vikendice</h3>
+  <ul class="stat-list">
+    <li><strong>U poslednja 24h:</strong> {{ numVikendicaPeriod[0] }}</li>
+    <li><strong>U poslednjih 7 dana:</strong> {{ numVikendicaPeriod[1] }}</li>
+    <li><strong>U poslednjih 30 dana:</strong> {{ numVikendicaPeriod[2] }}</li>
+  </ul>
+</div>
+
+<div class="filter-section">
+  <label>Naziv:</label>
+  <input type="text" [(ngModel)]="searchNaziv" (input)="filterVikendice()" />
+  <span class="divider">|</span>
+  <label>Mesto:</label>
+  <input type="text" [(ngModel)]="searchMesto" (input)="filterVikendice()" />
+</div>
+
+<table class="pending-table">
+  <thead>
+    <tr>
+      <td>
+        Naziv
+        <button (click)="sortBy('naziv')">Sort</button>
+      </td>
+      <td>
+        Mesto
+        <button (click)="sortBy('mesto')">Sort</button>
+      </td>
+      <td>Usluge</td>
+      <td>Telefon</td>
+    </tr>
+  </thead>
+  <tbody>
+    @for (v of filteredVikendice; track v) {
+      <tr>
+        <td>{{v.naziv}}</td>
+        <td>{{v.mesto}}</td>
+        <td>{{v.usluge}}</td>
+        <td>{{v.telefon}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

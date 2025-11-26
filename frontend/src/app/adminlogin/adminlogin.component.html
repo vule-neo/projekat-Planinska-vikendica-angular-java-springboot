@@ -1,0 +1,12 @@
+<h3 class="admin-login-title">Admin login</h3>
+<hr class="admin-login-divider" />
+
+<div class="admin-login-form">
+  <label>Username:</label>
+  <input type="text" name="username" [(ngModel)]="username" />
+
+  <label>Password:</label>
+  <input type="password" name="password" [(ngModel)]="password" />
+
+  <button (click)="login()">Log in</button>
+</div>

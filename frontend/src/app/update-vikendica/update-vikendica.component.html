@@ -1,0 +1,110 @@
+<div class="update-cottage-container">
+    <h3 class="update-title">Azuriraj vikendicu : {{naziv}}</h3>
+
+    <div class="update-section">
+        <div class="form-group">
+            <label class="form-label">Naziv: {{vikendica.naziv}}</label>
+            <input type="text" name="naziv" [(ngModel)]="newNaziv" class="form-input">
+            <button name="naziv" (click)="update('naziv', newNaziv)" class="btn-update">Update</button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Mesto: {{vikendica.mesto}}</label>
+            <input type="text" name="mesto" [(ngModel)]="newMesto" class="form-input">
+            <button name="mesto" (click)="update('mesto', newMesto)" class="btn-update">Update</button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Usluge: {{vikendica.usluge}}</label>
+            <input type="text" name="usluge" [(ngModel)]="newUsluge" class="form-input">
+            <button name="usluge" (click)="update('usluge', newUsluge)" class="btn-update">Update</button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Telefon: {{vikendica.telefon}}</label>
+            <input type="text" name="telefon" [(ngModel)]="newTelefon" class="form-input">
+            <button name="telefon" (click)="update('telefon', newTelefon)" class="btn-update">Update</button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">X: {{vikendica.x}}</label>
+            <input type="text" name="x" [(ngModel)]="newX" class="form-input">
+            <button name="x" (click)="update('x', newX)" class="btn-update">Update</button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Y: {{vikendica.y}}</label>
+            <input type="text" name="y" [(ngModel)]="newY" class="form-input">
+            <button name="y" (click)="update('y', newY)" class="btn-update">Update</button>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="images-section">
+        <h4 class="section-title">Slike</h4>
+        @for(slika of slike ; track $index){
+            <div class="image-item">
+                <img [src]="slika" alt="slika" class="cottage-image" />
+                <button (click)="deleteImage(slika)" class="btn-delete">Izbrisi sliku</button>
+            </div>
+        }
+        
+        <div class="upload-section">
+            <label class="form-label">Dodaj novu sliku: </label>
+            <input type="file" (change)="onFileSelected($event)" class="file-input">
+            <button (click)="uploadImage()" class="btn-primary">Dodaj sliku</button>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="pricing-section">
+        <h4 class="section-title">Cenovnici</h4>
+        @for (cenovnik of cenovnici; track $index) {
+            <div class="price-item">
+                <div class="price-header">Cenovnik: {{$index + 1}}</div>
+                
+                <div class="price-field">
+                    <span class="price-label">Cena: {{ cenovnik.cena }}</span>
+                    <input type="number" [(ngModel)]="newCena[$index]" class="form-input number-input">
+                    <button (click)="updateCenovnik(cenovnik, 'cena', newCena[$index])" class="btn-update">Update</button>
+                </div>
+
+                <div class="price-field">
+                    <span class="price-label">Od: {{ cenovnik.od }}</span>
+                    <input type="number" [(ngModel)]="newOd[$index]" class="form-input number-input">
+                    <button (click)="updateCenovnik(cenovnik, 'periodod', newOd[$index])" class="btn-update">Update</button>
+                </div>
+
+                <div class="price-field">
+                    <span class="price-label">Do: {{ cenovnik.doo }}</span>
+                    <input type="number" [(ngModel)]="newDoo[$index]" class="form-input number-input">
+                    <button (click)="updateCenovnik(cenovnik, 'perioddo', newDoo[$index])" class="btn-update">Update</button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="add-pricing-section">
+        <h4 class="section-title">Dodaj cenovnik</h4>
+        <div class="form-group">
+            <label class="form-label">Cena:</label>
+            <input type="number" id="cenovnik" name="cenovnik" [(ngModel)]="cenovnik.cena" class="form-input">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Vazi od (broj meseca):</label>
+            <input type="number" id="cenovnik" name="cenovnik" [(ngModel)]="cenovnik.od" class="form-input">
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Vazi do (broj meseca):</label>
+            <input type="number" id="cenovnik" name="cenovnik" [(ngModel)]="cenovnik.doo" class="form-input">
+        </div>
+        
+        <button (click)="dodajCenovnik()" class="btn-primary">Dodaj</button>
+    </div>
+</div>

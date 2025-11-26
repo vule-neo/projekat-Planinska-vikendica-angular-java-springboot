@@ -1,0 +1,103 @@
+<div class="container">
+  <h2>Trenutne rezervacije</h2>
+  @if (rezervacije.length > 0) {
+    <table class="pending-table">
+      <thead>
+        <tr>
+          <th>Vikendica</th>
+          <th>Datum početka</th>
+          <th>Datum kraja</th>
+          <th>Status</th>
+          <th>Cena</th>
+          <th>Broj kartice</th>
+          <th>Otkaži</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of rezervacije; track $index) {
+          @if (r.status === 'na_cekanju' || r.status === 'potvrdjeno') {
+            <tr>
+              <td data-label="Vikendica">{{ r.vikendica }}</td>
+              <td data-label="Datum početka">{{ r.datumPocetka }}</td>
+              <td data-label="Datum kraja">{{ r.datumKraja }}</td>
+              <td data-label="Status">{{ r.status }}</td>
+              <td data-label="Cena">{{ r.cena }}</td>
+              <td data-label="Broj kartice">{{ r.brojKartice }}</td>
+              <td data-label="Otkaži">
+                <button (click)="otkaziRez(r)">Otkaži</button>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>Nema aktivnih rezervacija.</p>
+  }
+
+  <hr>
+
+  <h2>Završene rezervacije</h2>
+  <table class="pending-table">
+    <thead>
+      <tr>
+        <th>Vikendica</th>
+        <th>Datum početka</th>
+        <th>Datum kraja</th>
+        <th>Status</th>
+        <th>Ocena</th>
+        <th>Komentar</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of rezervacije; track $index) {
+        @if (r.status === 'zavrseno') {
+          <tr>
+            <td data-label="Vikendica">{{ r.vikendica }}</td>
+            <td data-label="Datum početka">{{ r.datumPocetka }}</td>
+            <td data-label="Datum kraja">{{ r.datumKraja }}</td>
+            <td data-label="Status">{{ r.status }}</td>
+
+            @if (r.ocena === 0 || (r.ocena === 0 && (!r.komentar || r.komentar.trim() === ''))) {
+              <td data-label="Ocena">
+                <button (click)="oceniRezervaciju(r)">Oceni</button>
+              </td>
+              <td data-label="Komentar"></td>
+            } @else {
+              <td data-label="Ocena">{{ r.ocena }}</td>
+              <td data-label="Komentar">
+                @if (r.komentar == null) { Nema komentara. } @else { {{ r.komentar }} }
+              </td>
+            }
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+
+  <hr>
+
+  <h2>Otkazane rezervacije</h2>
+  <table class="pending-table">
+    <thead>
+      <tr>
+        <th>Vikendica</th>
+        <th>Datum početka</th>
+        <th>Datum kraja</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of rezervacije; track $index) {
+        @if (r.status === 'otkazano') {
+          <tr>
+            <td data-label="Vikendica">{{ r.vikendica }}</td>
+            <td data-label="Datum početka">{{ r.datumPocetka }}</td>
+            <td data-label="Datum kraja">{{ r.datumKraja }}</td>
+            <td data-label="Status">{{ r.status }}</td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

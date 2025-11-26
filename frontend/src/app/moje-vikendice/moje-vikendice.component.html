@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Moje vikendice: {{username}}</h2>
+
+  <table class="pending-table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Update/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for (v of vikendice; track v) {
+      <tr>
+        <td>{{v}}</td>
+        <td>
+          <a [routerLink]="['/vikendica/updateVikendica', v]"><button name="accept" >Update</button></a>
+          <button name="dismiss" (click)="delete(v)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+  </table>
+</div>

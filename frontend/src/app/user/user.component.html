@@ -1,0 +1,52 @@
+<h3 class="register-title">USER REGISTRATION</h3>
+
+<div class="register-form">
+  <label>Username:</label>
+  <input name="username" type="text" [(ngModel)]="userl.username" />
+
+  <label>Password:</label>
+  <input name="password" type="password" [(ngModel)]="userl.password" />
+
+  <label>Firstname:</label>
+  <input name="firstname" type="text" [(ngModel)]="userl.firstname" />
+
+  <label>Lastname:</label>
+  <input name="lastname" type="text" [(ngModel)]="userl.lastname" />
+
+  <label>Gender:</label>
+  <select name="gender" [(ngModel)]="userl.gender" required>
+    <option value="M">M</option>
+    <option value="Ž">Ž</option>
+  </select>
+
+  <label>Address:</label>
+  <input name="address" type="text" [(ngModel)]="userl.address" />
+
+  <label>Phone number:</label>
+  <input name="phoneNumber" type="text" [(ngModel)]="userl.phoneNumber" />
+
+  <label>Email:</label>
+  <input name="email" type="email" [(ngModel)]="userl.email" />
+
+  <label>Profile picture:</label>
+  <input type="file" name="profilePic" accept="image/*" (change)="onFileSelected($event)" />
+
+  <label>Credit card number:</label>
+  <input
+    name="creditCardNumber"
+    type="text"
+    [(ngModel)]="userl.creditCardNumber"
+    (input)="onCardNumberChange()"
+  />
+  @if(cardImage != "") {
+    <img [src]="cardImage" alt="Card Type" width="50" height="30" />
+  }
+
+  <label>Type:</label>
+  <select name="type" [(ngModel)]="userl.type">
+    <option value="turista">Turista</option>
+    <option value="vlasnik">Vlasnik</option>
+  </select>
+
+  <button (click)="register()">Register</button>
+</div>

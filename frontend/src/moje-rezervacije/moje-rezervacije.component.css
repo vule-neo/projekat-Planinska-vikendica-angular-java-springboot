@@ -1,0 +1,98 @@
+.star-rating {
+  display: inline-block;
+}
+
+.star-rating span {
+  font-size: 24px;
+  cursor: pointer;
+  color: lightgray;
+}
+
+.star-rating span.filled {
+  color: gold;
+}
+
+.pending-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.pending-table th,
+.pending-table td {
+  border: 1px solid black; 
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pending-table th {
+  background-color: #f2f2f2;
+}
+
+.truncate {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #333;
+  background-color: #eee;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+
+@media screen and (max-width: 768px) {
+  .pending-table, 
+  .pending-table thead, 
+  .pending-table tbody, 
+  .pending-table th, 
+  .pending-table td, 
+  .pending-table tr {
+    display: block;
+  }
+
+  .pending-table thead tr {
+    display: none;
+  }
+
+  .pending-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .pending-table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .pending-table td::before {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    content: attr(data-label);
+  }
+}

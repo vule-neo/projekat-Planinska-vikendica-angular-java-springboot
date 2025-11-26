@@ -1,0 +1,64 @@
+<div class="vikendice-section">
+  <h2>Vikendice</h2>
+
+  <div class="search-row">
+    <label>Pretrazi naziv:</label>
+    <input type="text" [(ngModel)]="pretragaNaziv" />
+    <label>Pretrazi mesto:</label>
+    <input type="text" [(ngModel)]="pretragaMesto" />
+    <button (click)="pretrazi()">Pretrazi</button>
+  </div>
+
+  <table class="pending-table">
+    <thead>
+      <tr>
+        <th>
+          Naziv 
+          <button (click)="sortBy('naziv')">Sortiraj</button>
+        </th>
+        <th>
+          Mesto 
+          <button (click)="sortBy('mesto')">Sortiraj</button>
+        </th>
+        <th>
+          Usluge 
+          <button (click)="sortBy('usluge')">Sortiraj</button>
+        </th>
+        <th>
+          Telefon 
+          <button (click)="sortBy('telefon')">Sortiraj</button>
+        </th>
+        <th>
+          Ocena 
+          <button (click)="sortBy('ocena')">Sortiraj</button>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (vikendica of filtriraneVikendice; track $index) {
+        <tr>
+          <td>
+            {{ vikendica.naziv }}<br />
+            <a [routerLink]="['/vikendica/vikendicaPregled', vikendica.naziv]">Detalji</a>
+          </td>
+          <td>{{ vikendica.mesto }}</td>
+          <td>{{ vikendica.usluge }}</td>
+          <td>{{ vikendica.telefon }}</td>
+          @if (vikendica.ocena == 0) {
+            <td>Nema ocene</td>
+          } @else {
+            <td>
+              {{ vikendica.ocena !== undefined ? vikendica.ocena.toFixed(1) : 'Nema ocene' }}
+              <div class="star-rating">
+                @for (s of [1, 2, 3, 4, 5]; track $index) {
+                  <span class="{{ vikendica.ocena >= s ? 'filled' : 'empty' }}">&#9733;</span>
+                }
+              </div>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

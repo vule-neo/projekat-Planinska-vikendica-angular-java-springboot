@@ -1,0 +1,59 @@
+<h3 class="vikendica-title">{{naziv}}</h3>
+
+<div class="vikendica-info">
+  <label class="vikendica-label">Naziv: <span class="vikendica-value">{{vikendica.naziv}}</span></label>
+  <label class="vikendica-label">Mesto: <span class="vikendica-value">{{vikendica.mesto}}</span></label>
+  <label class="vikendica-label">Usluge: <span class="vikendica-value">{{vikendica.usluge}}</span></label>
+  <label class="vikendica-label">Telefon: <span class="vikendica-value">{{vikendica.telefon}}</span></label>
+</div>
+
+<h4 class="coordinates-title">Koordinate:</h4>
+<div class="coordinates">
+  <label class="coordinate-label">X: <span class="coordinate-value">{{vikendica.x}}</span></label>
+  <label class="coordinate-label">Y: <span class="coordinate-value">{{vikendica.y}}</span></label>
+</div>
+
+<hr class="section-divider">
+
+<div class="vikendica-images">
+  @for(slika of slike ; track $index){
+    <div class="image-wrapper">
+      <img [src]="slika" alt="slika" class="vikendica-image" />
+    </div>
+  }
+</div>
+
+<hr class="section-divider">
+
+<div class="cenovnik-list">
+  @for (cenovnik of cenovnici; track $index) {
+    <div class="cenovnik-item">
+      Cenovnik: {{$index}} |
+      Cena: {{ cenovnik.cena }} |
+      Od: {{ cenovnik.od }}. meseca
+      do: {{ cenovnik.doo }}. meseca
+    </div>
+  }
+</div>
+
+<br>
+
+<h3 class="comments-title">Komentari i ocene:</h3>
+<div class="comments-list">
+  @for (r of rezervacije; track $index) {
+    <div class="comment-item">
+      Komentar: {{$index + 1}} |
+      {{r.korisnik}}: @if(r.komentar == null){Nema komentara.} @else{{{ r.komentar }}} |
+      Ocena: {{ r.ocena }}.
+    </div>
+  }
+</div>
+
+<br>
+<hr class="section-divider">
+
+@if (vikendicaBlokirana(vikendica.naziv)){
+  <p class="blocked-message">Vikendica je trenutno blokirana i nedostupna za iznajmljivanje.</p>
+}@else{
+  <a [routerLink]="['/vikendica/iznajmljivanje', vikendica.naziv]" class="rent-link">Iznajmi vikendicu</a>
+}

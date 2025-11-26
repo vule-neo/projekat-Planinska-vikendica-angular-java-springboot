@@ -1,0 +1,78 @@
+<h3 class="form-title">Iznajmljivanje vikendice</h3>
+
+@if (step === 1){
+  <h3 class="form-subtitle">Korak 1: Unesite datume i broj osoba</h3>
+  
+  <div class="form-step">
+    <label class="form-label">
+      Datum početka:
+      <input class="form-input" type="date" [(ngModel)]="rezervacija.datumPocetka" />
+    </label>
+
+    <label class="form-label">
+      Datum kraja:
+      <input class="form-input" type="date" [(ngModel)]="rezervacija.datumKraja" />
+    </label>
+
+    <label class="form-label">
+      Broj odraslih:
+      <input class="form-input" type="number" min="0" [(ngModel)]="rezervacija.brojOdraslih" />
+    </label>
+
+    <label class="form-label">
+      Broj dece:
+      <input class="form-input" type="number" min="0" [(ngModel)]="rezervacija.brojDece" />
+    </label>
+
+    <button class="btn-primary" (click)="goToStep2()">Dalje</button>
+  </div>
+}
+@else if (step === 2){
+  <h3 class="form-subtitle">Korak 2: Potvrdite podatke</h3>
+
+  <div class="form-step">
+    <mat-form-field appearance="fill" class="mat-field">
+      <mat-label>Datum početka</mat-label>
+      <input matInput [matDatepicker]="picker1" [(ngModel)]="rezervacija.datumPocetka" name="pocetak" />
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="mat-field">
+      <mat-label>Datum kraja</mat-label>
+      <input matInput [matDatepicker]="picker2" [(ngModel)]="rezervacija.datumKraja" name="kraj" />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <p class="summary-text">Broj odraslih: {{ rezervacija.brojOdraslih }}</p>
+    <p class="summary-text">Broj dece: {{ rezervacija.brojDece }}</p>
+
+    <div class="btn-group">
+      <button class="btn-secondary" (click)="step = 1">Nazad</button>
+      <button class="btn-primary" (click)="step = 3">Dalje</button>
+    </div>
+  </div>
+}
+@else if (step === 3){
+  <h3 class="form-subtitle">Korak 3: Plaćanje i dodatni opis</h3>
+
+  <div class="form-step">
+    <p class="summary-text">Cijena: {{cijena}}</p>
+
+    <label class="form-label">
+      Broj kartice: 
+      <input class="form-input" type="text" [(ngModel)]="rezervacija.brojKartice" />
+    </label>
+
+    <label class="form-label">
+      Opis (opciono, max 500 karaktera):
+      <textarea class="form-textarea" [(ngModel)]="rezervacija.opis" maxlength="500"></textarea>
+    </label>
+
+    <div class="btn-group">
+      <button class="btn-secondary" (click)="step = 2">Nazad</button>
+      <button class="btn-primary" (click)="submit()">Potvrdi</button>
+    </div>
+  </div>
+}

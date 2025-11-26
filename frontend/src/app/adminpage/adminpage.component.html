@@ -1,0 +1,200 @@
+<h2 class="section-title">Svi korisnici</h2>
+
+<table class="pending-table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Lozinka</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Pol</th>
+      <th>Adresa</th>
+      <th>Broj Telefona</th>
+      <th>Email</th>
+      <th>Profilna slika</th>
+      <th>Broj kartice</th>
+      <th>Tip</th>
+      <th>Status</th>
+      <th>Prihvati/Odbij</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of allUsers; track user) {
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.email }}</td>
+        <td class="truncate">{{ user.profilePicture }}</td>
+        <td>{{ user.creditCardNumber }}</td>
+        <td>{{ user.type }}</td>
+        <td>{{ user.status }}</td>
+        <td>
+          <button (click)="uredi(user)">Uredi</button>
+          <button (click)="blokiraj(user.username)">Blokiraj</button>
+          <button (click)="izbrisi(user.username)">Izbrisi</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<h3 class="section-subtitle">Dodaj korisnika</h3>
+
+<div class="user-form">
+  <div class="form-row">
+    <label>Username:</label>
+    <input name="username" type="text" [(ngModel)]="userl.username" />
+  </div>
+
+  <div class="form-row">
+    <label>Password:</label>
+    <input name="password" type="password" [(ngModel)]="userl.password" />
+  </div>
+
+  <div class="form-row">
+    <label>Firstname:</label>
+    <input name="firstname" type="text" [(ngModel)]="userl.firstname" />
+  </div>
+
+  <div class="form-row">
+    <label>Lastname:</label>
+    <input name="lastname" type="text" [(ngModel)]="userl.lastname" />
+  </div>
+
+  <div class="form-row">
+    <label>Gender:</label>
+    <select name="gender" [(ngModel)]="userl.gender" required>
+      <option value="M">M</option>
+      <option value="Ž">Ž</option>
+    </select>
+  </div>
+
+  <div class="form-row">
+    <label>Address:</label>
+    <input name="address" type="text" [(ngModel)]="userl.address" />
+  </div>
+
+  <div class="form-row">
+    <label>Phone number:</label>
+    <input name="phoneNumber" type="text" [(ngModel)]="userl.phoneNumber" />
+  </div>
+
+  <div class="form-row">
+    <label>Email:</label>
+    <input name="email" type="email" [(ngModel)]="userl.email" />
+  </div>
+
+  <div class="form-row">
+    <label>Profile picture:</label>
+    <input type="file" name="profilePic" accept="image/*" (change)="onFileSelected($event)" />
+  </div>
+
+  <div class="form-row">
+    <label>Credit card number:</label>
+    <input
+      name="creditCardNumber"
+      type="text"
+      [(ngModel)]="userl.creditCardNumber"
+      (input)="onCardNumberChange()" />
+    @if(cardImage != "") {
+      <img [src]="cardImage" alt="Card Type" width="50" height="30" />
+    }
+  </div>
+
+  <div class="form-row">
+    <label>Type:</label>
+    <select name="type" [(ngModel)]="userl.type">
+      <option value="turista">Turista</option>
+      <option value="vlasnik">Vlasnik</option>
+    </select>
+  </div>
+
+  <button class="register-btn" (click)="register()">Dodaj korisnika</button>
+</div>
+
+
+<h2 class="section-title">Pristigli korisnici</h2>
+
+<table class="pending-table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Lozinka</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Pol</th>
+      <th>Adresa</th>
+      <th>Broj Telefona</th>
+      <th>Email</th>
+      <th>Profilna slika</th>
+      <th>Broj kartice</th>
+      <th>Tip</th>
+      <th>Status</th>
+      <th>Prihvati/Odbij</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of pendingUsers; track user) {
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.email }}</td>
+        <td class="truncate">{{ user.profilePicture }}</td>
+        <td>{{ user.creditCardNumber }}</td>
+        <td>{{ user.type }}</td>
+        <td>{{ user.status }}</td>
+        <td>
+          <button (click)="accept(user.username)">Prihvati</button>
+          <button (click)="dismiss(user.username)">Odbij</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<h4 class="message-text">{{acceptanceMsg}}</h4>
+
+<h2 class="section-title">Vikendice:</h2>
+
+<table class="pending-table">
+  <thead>
+    <tr>
+      <td>Naziv</td>
+      <td>Mesto</td>
+      <td>Usluge</td>
+      <td>Telefon</td>
+      <td>Blokiraj</td>
+    </tr>
+  </thead>
+  <tbody>
+    @for (v of vikendice; track v) {
+      @if (v.crvena == false) {
+        <tr>
+          <td>{{v.naziv}}</td>
+          <td>{{v.mesto}}</td>
+          <td>{{v.usluge}}</td>
+          <td>{{v.telefon}}</td>
+          <td><button (click)="blokirajVikendicu(v.naziv)">Blokiraj na 48h</button></td>
+        </tr>
+      } @else {
+        <tr class="blocked-row">
+          <td>{{v.naziv}}</td>
+          <td>{{v.mesto}}</td>
+          <td>{{v.usluge}}</td>
+          <td>{{v.telefon}}</td>
+          <td><button (click)="blokirajVikendicu(v.naziv)">Blokiraj na 48h</button></td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>

@@ -1,0 +1,21 @@
+@if (rezervacija != null){
+<div class="review-container">
+    <h3 class="review-title">Rezervacija:</h3>
+    <div class="reservation-details">
+        <p>Datum Pocetka: {{ rezervacija.datumPocetka }}</p>
+        <p>Datum Kraja: {{ rezervacija.datumKraja }}</p>
+    </div>
+    
+    <div class="star-rating">
+        @for (s of [1,2,3,4,5]; track $index){
+            <span (click)="setRating(s)" [class.filled]="rating >= s">
+                &#9733;
+            </span>
+        }
+    </div>
+    
+    <textarea [(ngModel)]="comment" placeholder="Dodajte komentar" class="comment-textarea"></textarea>
+    
+    <button (click)="submitReview()" class="submit-button">Submit Review</button>
+</div>
+}

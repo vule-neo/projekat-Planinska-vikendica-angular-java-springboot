@@ -1,0 +1,38 @@
+<header class="main-header">
+    <a routerLink="/" class="logo-link">
+        <h2 class="logo">Planinska Vikendica</h2>
+    </a>
+
+    @if (currUser == null) {
+        <nav class="guest-nav">
+            <a routerLink="user/register" class="nav-link">Register</a>
+            <a routerLink="user/login" class="nav-link">Login</a>
+        </nav>
+    } @else {
+        <nav class="user-nav">
+            <a routerLink="user/profil" class="nav-link">Profil</a>
+            <a routerLink="user/changePassword" class="nav-link">Change password</a>
+            
+            @if (currUser.type == "vlasnik") {
+                <a routerLink="vikendica/dodajVikendicu" class="nav-link">Dodaj vikendicu</a>
+                <a routerLink="vikendica/mojeVikendice" class="nav-link">Moje vikendice</a>
+                <a routerLink="user/rezervacijeVlasnik" class="nav-link">Rezervacije</a>
+            } @else {
+                <a routerLink="user/vikendice" class="nav-link">Vikendice</a>
+                <a routerLink="user/mojeRezervacije" class="nav-link">Rezervacije</a>
+            }
+        </nav>
+    }
+</header>
+
+<router-outlet></router-outlet>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <p>&copy;Planinska Vikendica, napravio Vujadin Vasiljević.</p>
+        
+        @if (currUser != null) {
+            <button (click)="logout()" class="logout-btn">Log out</button>
+        }
+    </div>
+</footer>

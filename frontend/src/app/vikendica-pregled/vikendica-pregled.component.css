@@ -1,0 +1,180 @@
+.vikendica-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.vikendica-info {
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+}
+
+.vikendica-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #34495e;
+  flex: 1 1 45%;
+  min-width: 150px;
+}
+
+.coordinates-title {
+  margin-top: 30px;
+  color: #2c3e50;
+  font-weight: 600;
+  text-align: center;
+}
+
+.coordinates {
+  max-width: 600px;
+  margin: 10px auto 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.coordinate-label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.section-divider {
+  border-color: #ddd;
+  margin: 30px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vikendica-images {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.image-wrapper {
+  border: 1px solid #ccc;
+  padding: 4px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.image-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.vikendica-image {
+  width: 150px;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.cenovnik-list {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  padding: 0 20px;
+}
+
+.cenovnik-item {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.comments-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin: 0 auto 15px auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.comments-list {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  padding: 0 20px;
+}
+
+.comment-item {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.blocked-message {
+  color: #e74c3c;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rent-link {
+  display: inline-block;
+  font-weight: 600;
+  color: #2980b9;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid #2980b9;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0 auto 30px auto;
+  text-align: center;
+  cursor: pointer;
+  max-width: 600px;
+}
+
+.rent-link:hover {
+  background-color: #2980b9;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .vikendica-info {
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px 0;
+  }
+
+  .vikendica-label {
+    flex: 1 1 100%;
+    min-width: unset;
+  }
+
+  .coordinates {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .vikendica-image {
+    width: 120px;
+  }
+
+  .cenovnik-list, .comments-list {
+    padding: 0 10px;
+  }
+
+  .rent-link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

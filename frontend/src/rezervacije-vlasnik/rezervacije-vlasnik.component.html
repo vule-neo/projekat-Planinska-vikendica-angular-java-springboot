@@ -1,0 +1,77 @@
+<div class="reservations-container">
+    <h2 class="section-title">Trenutne rezervacije</h2>
+
+    <div class="table-container">
+        <table class="reservations-table">
+            <thead>
+                <tr>
+                    <th>Vikendica</th>
+                    <th>Datum početka</th>
+                    <th>Datum kraja</th>
+                    <th>Broj odraslih</th>
+                    <th>Broj dece</th>
+                    <th>Status</th>
+                    <th>Broj kartice</th>
+                    <th>Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (rez of rezervacije; track $index) {
+                    @if (rez.status === 'na_cekanju') {
+                        <tr>
+                            <td>{{ rez.vikendica }}</td>
+                            <td>{{ rez.datumPocetka }}</td>
+                            <td>{{ rez.datumKraja }}</td>
+                            <td>{{ rez.brojOdraslih }}</td>
+                            <td>{{ rez.brojDece }}</td>
+                            <td class="status-pending">{{ rez.status }}</td>
+                            <td>{{ rez.brojKartice }}</td>
+                            <td class="actions-cell">
+                                <input type="text" [(ngModel)]="komentar[$index]" placeholder="Komentar" class="input-field" />
+                                <div class="action-buttons">
+                                    <button (click)="potvrdi(rez)" class="btn-confirm">Potvrdi</button>
+                                    <button (click)="odbij(rez, komentar[$index])" class="btn-reject">Odbij</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="divider" />
+
+    <h2 class="section-title">Arhiva rezervacija</h2>
+
+    <div class="table-container">
+        <table class="reservations-table">
+            <thead>
+                <tr>
+                    <th>Vikendica</th>
+                    <th>Datum početka</th>
+                    <th>Datum kraja</th>
+                    <th>Broj odraslih</th>
+                    <th>Broj dece</th>
+                    <th>Status</th>
+                    <th>Broj kartice</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (rez of rezervacije; track rez) {
+                    @if (rez.status !== 'na_cekanju') {
+                        <tr>
+                            <td>{{ rez.vikendica }}</td>
+                            <td>{{ rez.datumPocetka }}</td>
+                            <td>{{ rez.datumKraja }}</td>
+                            <td>{{ rez.brojOdraslih }}</td>
+                            <td>{{ rez.brojDece }}</td>
+                            <td>{{ rez.status }}</td>
+                            <td>{{ rez.brojKartice }}</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<h3 class="login-title">User login</h3>
+<hr class="login-divider" />
+
+<div class="login-form">
+  <label>Username:</label>
+  <input type="text" name="username" [(ngModel)]="username" />
+
+  <label>Password:</label>
+  <input type="password" name="password" [(ngModel)]="password" />
+
+  <button (click)="login()">Log in</button>
+</div>
